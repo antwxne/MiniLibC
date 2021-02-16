@@ -36,3 +36,44 @@ Test(strlen, big)
     cr_expect_eq(expected, got, "Got: %zu | Expected: %zu\n", got, expected);
 }
 
+Test(strcmp, ok)
+{
+    const char *str1 = "PLOUF";
+    const char *str2 = "PLOUF";
+    int got = my_strcmp(str1, str2);
+    int expected = strcmp(str1, str2);
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
+
+Test(strcmp, KO_1)
+{
+    const char *str1 = "adasadsads";
+    const char *str2 = "PLOUF";
+    int got = my_strcmp(str1, str2);
+    int expected = strcmp(str1, str2);
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
+Test(strcmp, KO_2)
+{
+    const char *str1 = "PLOU";
+    const char *str2 = "PLOUF";
+    int got = my_strcmp(str1, str2);
+    int expected = strcmp(str1, str2);
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
+
+Test(strcmp, KO_3)
+{
+    const char *str1 = "PLOUF1";
+    const char *str2 = "PLOUF";
+    int got = my_strcmp(str1, str2);
+    int expected = strcmp(str1, str2);
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}

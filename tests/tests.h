@@ -11,5 +11,6 @@
 #include <string.h>
 
 size_t my_strlen(char *str);
+int my_strcmp(const char *s1, const char *s2);
 
 #endif // __TESTS_H_

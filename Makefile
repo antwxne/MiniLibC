@@ -5,7 +5,8 @@
 ## makefile
 ##
 
-ASM_SRC	=	src/my_strlen.asm
+ASM_SRC	=	src/my_strlen.asm	\
+			src/my_strcmp.asm
 
 SRC =
 
@@ -45,7 +46,6 @@ re:	fclean all $(NAME) debug
 
 debug:	CFLAGS += -g3
 debug:	re
-
 
 tests_run: LDFLAGS += -lcriterion --coverage
 tests_run: CPPFLAGS += -iquote./tests/ -DTU
