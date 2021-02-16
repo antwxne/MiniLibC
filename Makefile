@@ -5,42 +5,57 @@
 ## makefile
 ##
 
-SRC	=
+ASM_SRC	=	src/my_strlen.asm
 
-OBJ	=	$(SRC:.asm=.o)
+SRC =
 
-NAME	=	libmy_malloc.so
+OBJ		= 	$(SRC:.c=.o)
 
-CFLAGS	=	-Wall -Wextra  -fPIC -f elf64
+ASM_OBJ	=	$(ASM_SRC:.asm=.o)
 
-CPPFLAGS	=	-I./include
+NAME	=	libmy_test.so
 
-CC	=	nasm
+CFLAGS	=	-Wall -f elf64
+
+CPPFLAGS	=	
+
+CC 	= 	gcc
+
+NASM	=	nasm
 
 all: $(NAME)
 
 $(NAME):	$(OBJ)
-	$(CC) -shared -fPIC -o $(NAME) $(OBJ)
+	gcc -o $(NAME) $(OBJ)
+
+%.o:	%.asm
+	$(NASM) $(CFLAGS) -o $@ $<
+
 
 clean:
 	$(RM) $(OBJ)
+	$(RM) $(ASM_OBJ)
+	$(RM) *.gc*
+	$(RM) unit_tests
 
 fclean:	clean
 	$(RM) $(NAME)
 
 re:	fclean all $(NAME) debug
 
-debug:	CPPFLAGS += -g3
+debug:	CFLAGS += -g3
 debug:	re
 
-tests_run: SRC += tests/tests.c
+
 tests_run: LDFLAGS += -lcriterion --coverage
 tests_run: CPPFLAGS += -iquote./tests/ -DTU
 tests_run: CFLAGS := $(filter-out -Werror, $(CFLAGS))
+tests_run: CFLAGS += -DTU
+tests_run: SRC += tests/tests.c
 tests_run: SRC := $(filter-out main.c, $(SRC))
 tests_run: NAME := unit_tests
-tests_run:
-	$(CC) -o $(NAME) $(SRC) $(LDFLAGS) $(CPPFLAGS)
-	$(LOAD) ./$(NAME)
+tests_run: $(ASM_OBJ)
+	$(CC) -o $(NAME) $(SRC) $(ASM_OBJ) $(LDFLAGS) $(CPPFLAGS)
+	./$(NAME)
 
-.PHONY: all fclean re clean $(NAME) debug
+.PHONY: all fclean re clean $(NAME) debug tests_run
