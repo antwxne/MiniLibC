@@ -6,7 +6,8 @@
 ##
 
 ASM_SRC	=	src/my_strlen.asm	\
-			src/my_strcmp.asm
+			src/my_strcmp.asm 	\
+			src/my_strncmp.asm
 
 SRC =
 

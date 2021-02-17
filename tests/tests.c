@@ -77,3 +77,50 @@ Test(strcmp, KO_3)
 
     cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
 }
+
+Test(strncmp, ok)
+{
+    const char *str1 = "PLOUF";
+    const char *str2 = "PLOUF";
+    size_t n = 3;
+    int got = my_strncmp(str1, str2, n);
+    int expected = strncmp(str1, str2, n);
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
+
+Test(strncmp, ok_n_sup)
+{
+    const char *str1 = "PLOUF";
+    const char *str2 = "PLOUF";
+    size_t n = 200;
+    int got = my_strncmp(str1, str2, n);
+    int expected = strncmp(str1, str2, n);
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
+
+Test(strncmp, ko)
+{
+    const char *str1 = "PLAF";
+    const char *str2 = "PLOUF";
+    size_t n = 3;
+    int got = my_strncmp(str1, str2, n);
+    int expected = strncmp(str1, str2, n);
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
+
+Test(strncmp, ko_n_sup)
+{
+    const char *str1 = "PLAF";
+    const char *str2 = "PLOUF";
+    size_t n = 2000;
+    int got = my_strncmp(str1, str2, n);
+    int expected = strncmp(str1, str2, n);
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
