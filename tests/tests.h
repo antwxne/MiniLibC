@@ -14,5 +14,6 @@ size_t my_strlen(char *str);
 int my_strcmp(const char *s1, const char *s2);
 int my_strncmp(const char *s1, const char *s2, size_t n);
 void *my_memcpy(void *dest, const void *src, size_t n);
+void *my_memset(void *s, int c, size_t n);
 
 #endif // __TESTS_H_

@@ -134,5 +134,16 @@ Test(memcpy, test_tutorialspoint)
     my_memcpy(got, src, strlen(src) + 1);
     memcpy(expected, src, strlen(src) + 1);
 
-    cr_expect_str_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
+}
+
+Test(memset, test_tutorialspoint)
+{
+    char str[50];
+
+    strcpy(str,"This is string.h library function");
+    cr_expect_str_eq("This is string.h library function", str);
+
+    memset(str,'$',7);
+    cr_expect_str_eq("$$$$$$$ string.h library function", str);
 }
