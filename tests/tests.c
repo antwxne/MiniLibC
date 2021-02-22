@@ -225,3 +225,22 @@ Test(strchr, undefined)
 
     cr_expect_null(got);
 }
+
+Test(rindex, ok)
+{
+    char str1[] = "PlOOOOOOuF";
+    char *got = my_rindex(str1, 'O');
+    char *expected = rindex(str1, 'O');
+
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
+}
+
+Test(rindex, undefined)
+{
+    char str1[] = "PlOOOOOOuF";
+    char *got = my_rindex(str1, 'z');
+    char *expected = rindex(str1, 'z');
+
+    cr_expect_null(got);
+    cr_expect_null(expected);
+}
