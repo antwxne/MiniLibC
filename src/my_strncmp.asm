@@ -1,14 +1,15 @@
 bits 64
 
 section .text
-    global my_strncmp
 
 %ifndef TU
     global strncmp
+strncmp:
+%else
+    global my_strncmp
+my_strncmp:
 %endif
 
-strncmp:
-my_strncmp:
     xor rax, rax
     xor rcx, rcx
 .loop:

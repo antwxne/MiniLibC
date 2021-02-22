@@ -1,15 +1,15 @@
 bits 64
 
 section .text
-    global my_memcpy
 
 %ifndef TU
     global memcpy
+memcpy:
+%else
+    global my_memcpy
+my_memcpy:
 %endif
 
-
-memcpy:
-my_memcpy:
     xor rcx, rcx
 .loop:
     cmp rcx, rdx

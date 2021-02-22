@@ -139,11 +139,24 @@ Test(memcpy, test_tutorialspoint)
 
 Test(memset, test_tutorialspoint)
 {
-    char str[50];
+    char expected[50];
+    char got[50];
+    strcpy(expected,"This is string.h library function");
+    strcpy(got,"This is string.h library function");
 
-    strcpy(str,"This is string.h library function");
-    cr_expect_str_eq("This is string.h library function", str);
 
-    memset(str,'$',7);
-    cr_expect_str_eq("$$$$$$$ string.h library function", str);
+    memset(expected,'$',7);
+    my_memset(got, '$', 7);
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
+}
+
+Test(memmove, test_tutorialspoint)
+{
+    char expected[] = "Firststring";
+    char got[] = "Firststring";
+    const char b[] = "Secondstring";
+
+    memmove(expected, b, 9);
+    my_memmove(got, b, 9);
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
 }

@@ -9,6 +9,8 @@ ASM_SRC	=	src/my_strlen.asm	\
 			src/my_strcmp.asm 	\
 			src/my_strncmp.asm	\
 			src/my_memcpy.asm 	\
+			src/my_memset.asm	\
+			src/my_memmove.asm 	\
 
 SRC =
 
@@ -19,6 +21,8 @@ ASM_OBJ	=	$(ASM_SRC:.asm=.o)
 NAME	=	libasm.so
 
 CFLAGS	=	-Wall -f elf64
+
+ASFLAGS 	=
 
 CPPFLAGS	=	
 
@@ -32,7 +36,7 @@ $(NAME):	$(ASM_OBJ)
 	$(CC) -o $(NAME) $(ASM_OBJ) -shared
 
 %.o:	%.asm
-	$(NASM) $(CFLAGS) -o $@ $<
+	$(NASM) $(CFLAGS) $(AS_FLAGS) -o $@ $<
 
 
 clean:
@@ -51,7 +55,8 @@ debug:	CPPFLAGS += -g3 -ggdb
 debug:	re
 
 tests_run: LDFLAGS += -lcriterion --coverage
-tests_run: CPPFLAGS += -iquote./tests/ -DTU
+tests_run: AS_FLAGS += -DTU
+tests_run: CPPFLAGS += -iquote./tests/
 tests_run: CFLAGS := $(filter-out -Werror, $(CFLAGS))
 tests_run: SRC += tests/tests.c
 tests_run: SRC := $(filter-out main.c, $(SRC))

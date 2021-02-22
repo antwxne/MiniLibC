@@ -1,14 +1,15 @@
 bits 64
 
 section .text
-    global my_strlen
 
 %ifndef TU
     global strlen
+strlen:
+%else
+    global my_strlen
+my_strlen:
 %endif
 
-strlen:
-my_strlen:
     xor rax, rax
 .loop:
     cmp byte [rdi + rax], 0
