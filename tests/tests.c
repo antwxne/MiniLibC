@@ -190,3 +190,38 @@ Test(strcasecmp, mix)
 
     cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
 }
+
+Test(strchr, start)
+{
+    char str1[] = "PlOuF";
+    char *got = my_strchr(str1, 'P');
+    char *expected = strchr(str1, 'P');
+
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
+}
+
+Test(strchr, mid)
+{
+    char str1[] = "PlOuF";
+    char *got = my_strchr(str1, 'O');
+    char *expected = strchr(str1, 'O');
+
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
+}
+
+Test(strchr, end)
+{
+    char str1[] = "PlOuF";
+    char *got = my_strchr(str1, '\0');
+    char *expected = strchr(str1, '\0');
+
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
+}
+
+Test(strchr, undefined)
+{
+    char str1[] = "PlOuF";
+    char *got = my_strchr(str1, 'z');
+
+    cr_expect_null(got);
+}
