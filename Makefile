@@ -11,6 +11,7 @@ ASM_SRC	=	src/my_strlen.asm	\
 			src/my_memcpy.asm 	\
 			src/my_memset.asm	\
 			src/my_memmove.asm 	\
+			src/my_strcasecmp.asm 	\
 
 SRC =
 

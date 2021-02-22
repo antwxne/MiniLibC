@@ -160,3 +160,33 @@ Test(memmove, test_tutorialspoint)
     my_memmove(got, b, 9);
     cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
 }
+
+Test(strcasecmp, min)
+{
+    char str1[] = "plouf";
+    char str2[] = "plouf";
+    char got = my_strcasecmp(str1, str2);
+    char expected = strcasecmp(str1, str2);;
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
+Test(strcasecmp, maj)
+{
+    char str1[] = "PLOUF";
+    char str2[] = "PLOUF";
+    char got = my_strcasecmp(str1, str2);
+    char expected = strcasecmp(str1, str2);;
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
+Test(strcasecmp, mix)
+{
+    char str1[] = "PlOuF";
+    char str2[] = "PLOUF";
+    char got = my_strcasecmp(str1, str2);
+    char expected = strcasecmp(str1, str2);;
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}

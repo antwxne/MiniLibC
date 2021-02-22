@@ -16,5 +16,6 @@ int my_strncmp(const char *s1, const char *s2, size_t n);
 void *my_memcpy(void *dest, const void *src, size_t n);
 void *my_memset(void *s, int c, size_t n);
 void *my_memmove(void *dest_str, const void *src_str, size_t number);
+int my_strcasecmp(const char *s1, const char *s2);
 
 #endif // __TESTS_H_
