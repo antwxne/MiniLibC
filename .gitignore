@@ -1,3 +1,5 @@
 *.o
 unit_tests
 *.gc*
+main.c
+a.out

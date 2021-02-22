@@ -7,7 +7,8 @@
 
 ASM_SRC	=	src/my_strlen.asm	\
 			src/my_strcmp.asm 	\
-			src/my_strncmp.asm
+			src/my_strncmp.asm	\
+			src/my_memcpy.asm 	\
 
 SRC =
 
@@ -15,7 +16,7 @@ OBJ		= 	$(SRC:.c=.o)
 
 ASM_OBJ	=	$(ASM_SRC:.asm=.o)
 
-NAME	=	libmy_test.so
+NAME	=	libasm.so
 
 CFLAGS	=	-Wall -f elf64
 
@@ -27,8 +28,8 @@ NASM	=	nasm
 
 all: $(NAME)
 
-$(NAME):	$(OBJ)
-	gcc -o $(NAME) $(OBJ)
+$(NAME):	$(ASM_OBJ)
+	$(CC) -o $(NAME) $(ASM_OBJ) -shared
 
 %.o:	%.asm
 	$(NASM) $(CFLAGS) -o $@ $<
@@ -43,15 +44,15 @@ clean:
 fclean:	clean
 	$(RM) $(NAME)
 
-re:	fclean all $(NAME) debug
+re:	fclean
+re: all
 
-debug:	CFLAGS += -g3
+debug:	CPPFLAGS += -g3 -ggdb
 debug:	re
 
 tests_run: LDFLAGS += -lcriterion --coverage
 tests_run: CPPFLAGS += -iquote./tests/ -DTU
 tests_run: CFLAGS := $(filter-out -Werror, $(CFLAGS))
-tests_run: CFLAGS += -DTU
 tests_run: SRC += tests/tests.c
 tests_run: SRC := $(filter-out main.c, $(SRC))
 tests_run: NAME := unit_tests

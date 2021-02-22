@@ -124,3 +124,15 @@ Test(strncmp, ko_n_sup)
 
     cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
 }
+
+Test(memcpy, test_tutorialspoint)
+{
+    const char src[50] = "http://www.tutorialspoint.com";
+    char got[50];
+    char expected[50];
+
+    my_memcpy(got, src, strlen(src) + 1);
+    memcpy(expected, src, strlen(src) + 1);
+
+    cr_expect_str_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
