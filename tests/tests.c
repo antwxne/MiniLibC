@@ -264,23 +264,33 @@ Test(strstr, ko)
     cr_expect_null(got);
 }
 
-// Test(strpbrk, ok)
-// {
-//     char str1[] = "plifplafplafplouf";
-//     char *got = my_strpbrk(str1, "plaf");
-//     char *expected = strpbrk(str1, "plaf");
+Test(strpbrk, ok)
+{
+    char str1[] = "plifplafplafplouf";
+    char *got = my_strpbrk(str1, "plaf");
+    char *expected = strpbrk(str1, "plaf");
 
-//     cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
-// }
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
+}
 
-// Test(strpbrk, ko)
-// {
-//     char str1[] = "plifplafplafplouf";
-//     char *got = my_strpbrk(str1, "fafafafafaf");
-//     char *expected = strpbrk(str1, "fafafafafaf");
+Test(strpbrk, ko)
+{
+    char str1[] = "plifplafplafplouf";
+    char *got = my_strpbrk(str1, "fafafafafaf");
+    char *expected = strpbrk(str1, "fafafafafaf");
 
-//     cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
-// }
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
+}
+
+Test(strpbrk, empty)
+{
+    char str1[] = "plifplafplafplouf";
+    char *got = my_strpbrk(str1, "");
+    char *expected = strpbrk(str1, "");
+
+    cr_expect_null(expected);
+    cr_expect_null(got);
+}
 
 // Test(strcspn, ok)
 // {
