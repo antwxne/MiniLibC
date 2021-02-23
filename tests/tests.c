@@ -292,11 +292,29 @@ Test(strpbrk, empty)
     cr_expect_null(got);
 }
 
-// Test(strcspn, ok)
-// {
-//     char str1[] = "plifplafplafplouf";
-//     char *got = my_strcspn(str1, "plaf");
-//     char *expected = strcspn(str1, "plaf");
+Test(strcspn, no_occurence)
+{
+    char str1[] = "plifplafplafplouf";
+    size_t got = my_strcspn(str1, "plaf");
+    size_t expected = strcspn(str1, "plaf");
 
-//     cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
-// }
+    cr_expect_eq(expected, got, "Got: %zu | Expected: %zu\n", got, expected);
+}
+
+Test(strcspn, empty)
+{
+    char str1[] = "plifplafplafplouf";
+    size_t got = my_strcspn(str1, "");
+    size_t expected = strcspn(str1, "");
+
+    cr_expect_eq(expected, got, "Got: %zu | Expected: %zu\n", got, expected);
+}
+
+Test(strcspn, simple)
+{
+    char str1[] = "plifplafplafplouf";
+    size_t got = my_strcspn(str1, "oa");
+    size_t expected = strcspn(str1, "oa");
+
+    cr_expect_eq(expected, got, "Got: %zu | Expected: %zu\n", got, expected);
+}
