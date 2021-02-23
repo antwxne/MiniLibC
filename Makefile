@@ -14,6 +14,7 @@ ASM_SRC	=	src/my_strlen.asm		\
 			src/my_strcasecmp.asm 	\
 			src/my_strchr.asm 		\
 			src/my_rindex.asm 		\
+			src/my_strstr.asm		\
 
 SRC =
 

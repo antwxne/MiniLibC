@@ -19,5 +19,8 @@ void *my_memmove(void *dest_str, const void *src_str, size_t number);
 int my_strcasecmp(const char *s1, const char *s2);
 char *my_strchr(const char *s, int c);
 char *my_rindex(const char *s, int c);
+char *my_strstr(const char *haystack, const char *needle);
+char *my_strpbrk(const char *s, const char *accept);
+size_t my_strcspn(const char *s, const char *reject);
 
 #endif // __TESTS_H_
