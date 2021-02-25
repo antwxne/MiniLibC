@@ -4,7 +4,7 @@ section .text
 
 %ifndef TU
     global strstr
-strstr
+strstr:
 %else
     global my_strstr
 my_strstr:

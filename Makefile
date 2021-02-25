@@ -26,9 +26,9 @@ ASM_OBJ	=	$(ASM_SRC:.asm=.o)
 
 NAME	=	libasm.so
 
-CFLAGS	=	-Wall -f elf64
+CFLAGS	=	-Wall -Wextra -Werror
 
-ASFLAGS 	=
+ASFLAGS 	=	-Wall -f elf64
 
 CPPFLAGS	=	
 
@@ -39,10 +39,10 @@ NASM	=	nasm
 all: $(NAME)
 
 $(NAME):	$(ASM_OBJ)
-	$(CC) -o $(NAME) $(ASM_OBJ) -shared
+	ld -o $(NAME) $(ASM_OBJ) -shared
 
 %.o:	%.asm
-	$(NASM) $(CFLAGS) $(AS_FLAGS) -o $@ $<
+	$(NASM) $(ASFLAGS) -o $@ $<
 
 
 clean:
@@ -61,7 +61,7 @@ debug:	CPPFLAGS += -g3 -ggdb
 debug:	re
 
 tests_run: LDFLAGS += -lcriterion --coverage
-tests_run: AS_FLAGS += -DTU
+tests_run: ASFLAGS += -DTU
 tests_run: CPPFLAGS += -iquote./tests/
 tests_run: CFLAGS := $(filter-out -Werror, $(CFLAGS))
 tests_run: SRC += tests/tests.c

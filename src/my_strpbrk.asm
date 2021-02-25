@@ -4,7 +4,7 @@ section .text
 
 %ifndef TU
     global strpbrk
-strpbrk
+strpbrk:
 %else
     global my_strpbrk
 my_strpbrk:

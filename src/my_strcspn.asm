@@ -4,7 +4,7 @@ section .text
 
 %ifndef TU
     global strcspn
-strcspn
+strcspn:
 %else
     global my_strcspn
 my_strcspn:

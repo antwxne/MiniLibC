@@ -4,7 +4,7 @@ section .text
 
 %ifndef TU
     global rindex
-rindex
+rindex:
 %else
     global my_rindex
 my_rindex:
