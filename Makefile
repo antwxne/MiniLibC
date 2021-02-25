@@ -67,7 +67,7 @@ tests_run: CFLAGS := $(filter-out -Werror, $(CFLAGS))
 tests_run: SRC += tests/tests.c
 tests_run: SRC := $(filter-out main.c, $(SRC))
 tests_run: NAME := unit_tests
-tests_run: $(ASM_OBJ)
+tests_run: re
 	$(CC) -o $(NAME) $(SRC) $(ASM_OBJ) $(LDFLAGS) $(CPPFLAGS)
 	./$(NAME)
 
