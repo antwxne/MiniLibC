@@ -276,6 +276,16 @@ Test(strpbrk, ok)
 Test(strpbrk, ko)
 {
     char str1[] = "plifplafplafplouf";
+    char *got = my_strpbrk(str1, "zvzvzvz");
+    char *expected = strpbrk(str1, "zvzvzzv");
+
+    cr_expect_null(expected);
+    cr_expect_null(got);
+}
+
+Test(strpbrk, ko2)
+{
+    char str1[] = "plifplafplafplouf";
     char *got = my_strpbrk(str1, "fafafafafaf");
     char *expected = strpbrk(str1, "fafafafafaf");
 
