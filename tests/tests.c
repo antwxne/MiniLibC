@@ -171,6 +171,36 @@ Test(strcasecmp, min)
     cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
 }
 
+Test(strcasecmp, edouard)
+{
+    char str1[] = "\x81";
+    char str2[] = "a";
+    char got = my_strcasecmp(str1, str2);
+    char expected = strcasecmp(str1, str2);;
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
+Test(strcasecmp, tqt1)
+{
+    char str1[] = "[\\]^_`!#&)()";
+    char str2[] = "[\\]^_`!#&)()";
+    char got = my_strcasecmp(str1, str2);
+    char expected = strcasecmp(str1, str2);;
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
+Test(strcasecmp, tqt2)
+{
+    char str1[] = "[\\]^_`";
+    char str2[] = "[\\]^_`";
+    char got = my_strcasecmp(str1, str2);
+    char expected = strcasecmp(str1, str2);;
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
 Test(strcasecmp, maj)
 {
     char str1[] = "PLOUF";

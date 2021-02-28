@@ -23,8 +23,41 @@ my_strcasecmp:
     je .end
     cmp r9b, 0
     je .end
+    cmp r8b, 'A'
+    jl .simple_cmp
+    cmp r9b, 'A'
+    jl .simple_cmp
+    cmp r8b, 'z'
+    jg .simple_cmp
+    cmp r9b, 'z'
+    jg .simple_cmp
+    cmp r8b, 91
+    je .simple_cmp
+    cmp r8b, 92
+    je .simple_cmp
+    cmp r8b, 93
+    je .simple_cmp
+    cmp r8b, 94
+    je .simple_cmp
+    cmp r8b, 95
+    je .simple_cmp
+    cmp r8b, 96
+    je .simple_cmp
+    cmp r9b, 91
+    je .simple_cmp
+    cmp r9b, 92
+    je .simple_cmp
+    cmp r9b, 93
+    je .simple_cmp
+    cmp r9b, 94
+    je .simple_cmp
+    cmp r9b, 95
+    je .simple_cmp
+    cmp r9b, 96
+    je .simple_cmp
     cmp r9b, r10b
     je .next
+.simple_cmp:
     cmp r9b, r8b
     je .next
     jne .end
