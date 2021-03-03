@@ -10,7 +10,7 @@ memmove:
     global my_memmove
 my_memmove:
 %endif
-
+    ;; USE TMP VAR
     dec rdx
 .loop:
     cmp rdx, -1

@@ -89,6 +89,27 @@ Test(strncmp, ok)
     cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
 }
 
+Test(strncmp, n_equal_to_len)
+{
+    const char *str1 = "PLOUF";
+    const char *str2 = "PLOUF";
+    size_t n = strlen(str1);
+    int got = my_strncmp(str1, str2, n);
+    int expected = strncmp(str1, str2, n);
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
+
+Test(strncmp, ko2)
+{
+    const char *str1 = "PLOUF";
+    const char *str2 = "PLOUFadadada";
+    size_t n = strlen(str1);
+    int got = my_strncmp(str1, str2, n);
+    int expected = strncmp(str1, str2, n);
+
+    cr_expect_eq(expected, got, "Got: %d | Expected: %d\n", got, expected);
+}
 
 Test(strncmp, ok_n_sup)
 {
@@ -158,6 +179,22 @@ Test(memmove, test_tutorialspoint)
 
     memmove(expected, b, 9);
     my_memmove(got, b, 9);
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
+}
+
+Test(memmove, test_geeks_for_geeks)
+{
+    char str[100] = "Learningisfun";
+    char *first;
+    char *expected;
+    char *got;
+    
+    first = str;
+    expected = str;
+    got = str;
+
+    memmove(expected + 8, first, 10);
+    my_memmove(got + 8, first, 10);
     cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
 }
 
@@ -280,6 +317,36 @@ Test(strstr, ok)
     char str1[] = "plifplafplouf";
     char *got = my_strstr(str1, "plaf");
     char *expected = strstr(str1, "plaf");
+
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
+}
+
+Test(strstr, empty_str_1)
+{
+    char str1[] = "plifplafplouf";
+    char *got = my_strstr(str1, "");
+    char *expected = strstr(str1, "");
+
+    cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
+}
+
+
+Test(strstr, empty_str2)
+{
+    char str1[] = "";
+    char *got = my_strstr(str1, "plaf");
+    char *expected = strstr(str1, "plaf");
+
+    cr_expect_null(got);
+    cr_expect_null(expected);
+}
+
+
+Test(strstr, empty_all)
+{
+    char str1[] = "";
+    char *got = my_strstr(str1, "");
+    char *expected = strstr(str1, "");
 
     cr_expect_str_eq(expected, got, "Got: %s | Expected: %s\n", got, expected);
 }

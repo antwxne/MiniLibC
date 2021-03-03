@@ -13,6 +13,11 @@ my_strstr:
     xor rax, rax
     xor rcx, rcx
 
+    cmp byte [rsi], byte 0
+    jne .loop
+    cmp byte [rdi], byte 0      ;check end of str
+    je .empty
+
 .loop:                          ;do
     mov r8, rcx
     xor r9, r9
@@ -23,7 +28,7 @@ my_strstr:
     inc rcx                     ;rcx++
 
     jmp .loop                   ;while
-
+    
 .contains:                      ;check if &str[rcx] contains to_find
     cmp byte [rdi + r8], 0      ;check end of str
     je .error
@@ -42,7 +47,11 @@ my_strstr:
 
     jmp .contains
 
-.end:                        ;return &str[rcx]
+.empty:
+    mov rax, rdi
+    ret
+
+.end:                           ;return &str[rcx]
     add rdi, rcx
     mov rax, rdi
     ret
