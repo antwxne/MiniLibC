@@ -15,8 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
+          mkdir -p artifacts
           make fclean
-          make
+          make > artifacts/build_log.txt
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build log
+          path: artifacts/build_log.txt
   Tests:
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker:devel
@@ -32,5 +37,8 @@ jobs:
           gcovr -e tests/ -b &> artifacts/coverage_branches.txt 
       - uses: actions/upload-artifact@v2
         with:
-          name: results
-          path: artifacts/
+          name: Tests results
+          path: |
+            artifacts/tests_results.txt
+            artifacts/coverage_lines.txt
+            artifacts/coverage_branches.txt
