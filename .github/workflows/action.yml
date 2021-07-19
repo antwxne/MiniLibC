@@ -22,7 +22,6 @@ jobs:
     container: epitechcontent/epitest-docker:devel
     name: tests
     steps:
-      - name: run tests
       - uses: actions/checkout@v2
       - run: |
           mkdir -p artifacts
@@ -31,8 +30,7 @@ jobs:
           ./unit_tests &> artifacts/tests_results.txt
           gcovr -e tests/ &> artifacts/coverage_lines.txt
           gcovr -e tests/ -b &> artifacts/coverage_branches.txt 
-      - name: upload tests artifact
       - uses: actions/upload-artifact@v2
         with:
           name: results
-          path: artifacts/*
+          path: artifacts/
